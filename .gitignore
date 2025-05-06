@@ -1,28 +1,89 @@
-.idea/*
-!.idea/misc.xml
-!.idea/modules.xml
-!.idea/encodings.xml
-!.idea/inspectionProfiles
-
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.pyo
-*.egg-info/
-*.egg
+*$py.class
 
-venv/
+# C extensions
+*.so
+
+# Virtual environments
 .env/
-ENV/
-env/
 .venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-.ipynb_checkpoints/
+# PyCharm project files
+.idea/
 
-*.log
+# VS Code project files
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# PyTorch & TensorBoard logs
+runs/
+logs/
+
+# TensorBoard event files
+events.out.tfevents.*
+
+# Model checkpoints and weights
+*.ckpt
+*.pth
+*.pt
+
+# Dataset caches or downloads (optional, adjust as needed)
+data/
+datasets/
+*.zip
+*.tar
+*.tar.gz
+
+# Matplotlib cache
+.mplconfig/
+
+# MyPy cache
+.mypy_cache/
+
+# Pyre type checker
+.pyre/
+
+# pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# SQL database
+*.sqlite3
+
+# MacOS
 .DS_Store
-Thumbs.db
 
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Pycharm Jupyter notebooks metadata
+.ipynb_meta/
+
+# Temporary files
+*.bak
+*.tmp
 *.swp
 *.swo
-
-logs/

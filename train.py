@@ -1,15 +1,21 @@
 import torch
 import torch.nn as nn
 import torchvision
+from IPython.core.pylabtools import figsize
 from torch.utils.data import DataLoader
 from CIFAR10_model import MyCIFAR10
 from torch.utils.tensorboard import SummaryWriter
+import matplotlib.pyplot as plt
+import numpy as np
+import random
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
+mean = (0.4914, 0.4822, 0.4465)
+std = (0.247, 0.243, 0.261)
 transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(),
-                                            torchvision.transforms.Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261)),
+                                            torchvision.transforms.Normalize(mean, std),
                                             torchvision.transforms.RandomCrop(32, padding=4),
                                             torchvision.transforms.RandomHorizontalFlip(),
                                             ])
@@ -19,7 +25,7 @@ train_data_loader = DataLoader(train_dataset, batch_size=64)
 test_data_loader = DataLoader(test_dataset, batch_size=64)
 
 model = MyCIFAR10().to(device)
-# model.load_state_dict(torch.load("CIFAR10_model.pth"))
+model.load_state_dict(torch.load("CIFAR10_model.pth"))
 loss = nn.CrossEntropyLoss(label_smoothing=0.1).to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
@@ -65,6 +71,28 @@ def test():
         writer.add_scalar("final_test_accuracy", accuracy / len(test_dataset), i * len(test_data_loader) + i)
         print(f"Accuracy: {accuracy / len(test_dataset)}")
 
+def show():
+    class_name = ['Plane', 'Car', 'Bird', 'Cat', 'Deer', 'Dog', 'Frog', 'Horse', 'Ship', 'Truck']
+    fig, ax = plt.subplots(2, 5)
+    for i in range(2):
+        for j in range(5):
+            image, label = test_dataset[random.randint(0, len(test_dataset) - 1)]
+            image = image.to(device)
+            output = model(image.unsqueeze(0))
+            pred = torch.argmax(output, dim=1)
+
+            image = image.cpu().numpy().transpose(1, 2, 0)
+            image = (image * std + mean) * 255
+            image = np.clip(image, 0, 255).astype(np.uint8)
+
+            ax[i][j].imshow(image)
+            ax[i][j].axis('off')
+            ax[i][j].set_title(f"Pred: {class_name[pred]} \n Label: {class_name[label]}")
+
+    plt.tight_layout()
+    plt.show()
+
 if __name__ == "__main__":
-    train()
+    # train()
     test()
+    show()

@@ -13,6 +13,8 @@ class MyCIFAR10(nn.Module):
             nn.MaxPool2d(2),
             nn.Flatten(),
             nn.Linear(64 * 4 * 4, 64),
+            nn.ReLU(),
+            nn.Dropout(),
             nn.Linear(64, 10)
         )
 

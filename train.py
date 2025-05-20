@@ -85,9 +85,9 @@ def test():
 
 def show():
     class_name = ['Plane', 'Car', 'Bird', 'Cat', 'Deer', 'Dog', 'Frog', 'Horse', 'Ship', 'Truck']
-    fig, ax = plt.subplots(2, 5)
+    fig, ax = plt.subplots(2, 6)
     for i in range(2):
-        for j in range(5):
+        for j in range(6):
             image, label = test_dataset[random.randint(0, len(test_dataset) - 1)]
             image = image.to(device)
             output = model(image.unsqueeze(0))

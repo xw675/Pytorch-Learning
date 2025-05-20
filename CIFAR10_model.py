@@ -26,10 +26,10 @@ class MyCIFAR10(nn.Module):
             nn.ReLU(),
 
             nn.Flatten(),
-            nn.Dropout(p=0.2),
+            nn.Dropout(p=0.1),
             nn.Linear(256 * 2 * 2, 256),
             nn.ReLU(),
-            nn.Dropout(p=0.3),
+            nn.Dropout(p=0.2),
             nn.Linear(256, 64),
             nn.Linear(64, 10)
         )

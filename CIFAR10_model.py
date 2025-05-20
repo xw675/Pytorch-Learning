@@ -27,7 +27,7 @@ class MyCIFAR10(nn.Module):
 
             nn.Flatten(),
             nn.Dropout(p=0.2),
-            nn.Linear(128 * 4 * 4, 64),
+            nn.Linear(128 * 2 * 2, 64),
             nn.ReLU(),
             nn.Dropout(p=0.3),
             nn.Linear(64, 10)

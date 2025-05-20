@@ -17,7 +17,6 @@ mean = (0.4914, 0.4822, 0.4465)
 std = (0.247, 0.243, 0.261)
 train_transform = torchvision.transforms.Compose([torchvision.transforms.RandomCrop(32, padding=4),
                                                   torchvision.transforms.RandomHorizontalFlip(),
-                                                  torchvision.transforms.RandomRotation(15),
                                                   torchvision.transforms.ToTensor(),
                                                   torchvision.transforms.Normalize(mean, std)])
 test_transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(),
@@ -31,8 +30,8 @@ test_data_loader = DataLoader(test_dataset, batch_size=64)
 model = MyCIFAR10().to(device)
 model.load_state_dict(torch.load("CIFAR10_model.pth"))
 loss = nn.CrossEntropyLoss(label_smoothing=0.1).to(device)
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-4)
-scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min')
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-4, weight_decay=1e-5)
+scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
 
 
 writer = SummaryWriter("logs")

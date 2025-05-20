@@ -15,11 +15,11 @@ print(f"Using device: {device}")
 
 mean = (0.4914, 0.4822, 0.4465)
 std = (0.247, 0.243, 0.261)
-train_transform = torchvision.transforms.Compose([transforms.RandomCrop(32, padding=4),
-                                                  transforms.RandomHorizontalFlip(),
-                                                  transforms.RandomRotation(15),
-                                                  transforms.ToTensor(),
-                                                  transforms.Normalize(mean, std)])
+train_transform = torchvision.transforms.Compose([torchvision.transforms.RandomCrop(32, padding=4),
+                                                  torchvision.transforms.RandomHorizontalFlip(),
+                                                  torchvision.transforms.RandomRotation(15),
+                                                  torchvision.transforms.ToTensor(),
+                                                  torchvision.transforms.Normalize(mean, std)])
 test_transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(),
                                                 torchvision.transforms.Normalize(mean, std)])
 

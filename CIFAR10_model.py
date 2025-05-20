@@ -16,7 +16,7 @@ class MyCIFAR10(nn.Module):
             nn.MaxPool2d(2),
 
             nn.Conv2d(32, 64, 5, 1, padding="same"),
-            nn.BatchNorm2d(32),
+            nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(2),
 

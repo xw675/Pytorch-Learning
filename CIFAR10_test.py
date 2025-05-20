@@ -3,7 +3,7 @@ import torchvision
 from CIFAR10_model import MyCIFAR10
 import torch
 
-image_path = "C:/Users/xw112/Pictures/Screenshots/Screenshot 2025-05-20 232151.png"
+image_path = "C:/Users/xw112/Pictures/Screenshots/Screenshot 2025-05-21 002600.png"
 image = Image.open(image_path).convert("RGB")
 # image.show()
 
